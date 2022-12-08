@@ -12,7 +12,7 @@ const Register = () => {
           <input type="email" placeholder="email" />
           <input type="password" placeholder="password" />
           <input style={{ display: "none" }} type="file" id="file" />
-          <label htmlFor="file">
+          <label htmlFor="file" id="file">
             <img src={Add} alt="" />
             <span> Add an avatar</span>
           </label>

@@ -1,25 +1,17 @@
 import React from "react";
-import Add from "../img/addAvatar.png";
 
-const Login = () => {
+const Login = () => (
   <div className="formContainer">
     <div className="formWrapper">
       <span className="logo">Chat Bot2022</span>
-      <span className="title">Register</span>
+      <span className="title">Login</span>
       <form>
-        <input type="text" placeholder="display name" />
         <input type="email" placeholder="email" />
         <input type="password" placeholder="password" />
-        <input style={{ display: "none" }} type="file" id="file" />
-        <label htmlFor="file">
-          <img src={Add} alt="" />
-          <span> Add an avatar</span>
-        </label>
-        <button>Sign Up</button>
+        <button>Sign In</button>
       </form>
-      <p>You do have an account? Login</p>
+      <p>You don't have an account? Register</p>
     </div>
-  </div>;
-};
-
+  </div>
+);
 export default Login;

@@ -3,11 +3,12 @@
 // https://github.com/safak/youtube2022/tree/react-chat
 
 import "./App.css";
+import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "./style.scss";
 
 function App() {
-  return <Register />;
+  return <Login />;
 }
 
 export default App;
