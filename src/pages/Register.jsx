@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Add from "../img/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, storage } from "../firebase";
+import { auth, storage, db } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../firebase";
 
 const Register = () => {
   const [err, setErr] = useState(false);
@@ -19,25 +18,22 @@ const Register = () => {
     const file = e.target[3].files[0];
 
     try {
+      // Create user
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      // const storage = getStorage();
       const storageRef = ref(storage, displayName);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
-      // Register three observers:
-      // 1. 'state_changed' observer, called any time the state changes
-      // 2. Error observer, called on failure
-      // 3. Completion observer, called on successful completion
       uploadTask.on(
         (error) => {
           // Handle unsuccessful uploads
           setErr(true);
+          console.log(error);
         },
         () => {
           // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateProfile(res.user, {
               displayName,
@@ -58,8 +54,8 @@ const Register = () => {
 
     // convert to  res = await createUserWithEmailAndPassword top
 
-    // https://firebase.google.com/docs/auth/web/password-auth
-    // createUserWithEmailAndPassword(auth, email, password)
+    //firebase.google.com/docs/auth/web/password-auth
+    // https: createUserWithEmailAndPassword(auth, email, password)
     //   .then((userCredential) => {
     //     // Signed in
     //     const user = userCredential.user;

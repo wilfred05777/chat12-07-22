@@ -19,14 +19,6 @@ const firebaseConfig = {
   messagingSenderId: "738934992419",
   appId: "1:738934992419:web:18ca84fec1198f10ac0b96",
   measurementId: "G-TD6C32S26J"
-  // apiKey: "AIzaSyArczpU-ApuDiddf26O_4G_0-8i66Lua10",
-  // authDomain: "todoapp-rmf.firebaseapp.com",
-  // databaseURL: "https://todoapp-rmf-default-rtdb.asia-southeast1.firebasedatabase.app",
-  // projectId: "todoapp-rmf",
-  // storageBucket: "todoapp-rmf.appspot.com",
-  // messagingSenderId: "899233000938",
-  // appId: "1:899233000938:web:f1cbc2d212441aeeb35693",
-  // measurementId: "G-43CEV3YGXQ"
 };
 
 // Initialize Firebase
