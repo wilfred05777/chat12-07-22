@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Add from "../img/addAvatar.png";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
-// https://firebase.google.com/docs/auth/web/password-auth
-
-
 const Register = () => {
-  const handleSubmit = (e) => {
+  const [err, setErr] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(e.target[0].value);
     const displayName = e.target[0].value;
@@ -15,19 +14,27 @@ const Register = () => {
     const password = e.target[2].value;
     const file = e.target[3].files[0];
 
-    // const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      setErr(true);
+    }
+
+    // convert to  res = await createUserWithEmailAndPassword top
+
+    // https://firebase.google.com/docs/auth/web/password-auth
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     // ...
+    //     console.log(user);
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // ..
+    //   });
   };
 
   return (
@@ -45,6 +52,7 @@ const Register = () => {
             <span> Add an avatar</span>
           </label>
           <button>Sign Up</button>
+          {err && <span>Something went wrong!</span>}
         </form>
         <p>You do have an account? Login</p>
       </div>
