@@ -48,7 +48,7 @@ const Register = () => {
 
             await setDoc(doc(db, "userChats", res.user.id), {});
 
-            
+            // https://reactrouter.com/en/main/start/overview
           });
         }
       );
