@@ -4,6 +4,9 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
+
 const Register = () => {
   const [err, setErr] = useState(false);
 
@@ -40,6 +43,12 @@ const Register = () => {
               displayName,
               photoURL: downloadURL
             });
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL
+            });
           });
         }
       );
@@ -62,6 +71,9 @@ const Register = () => {
     //     const errorMessage = error.message;
     //     // ..
     //   });
+
+    // 1: https://firebase.google.com/docs/storage/web/upload-files
+    // 2: https://firebase.google.com/docs/firestore/manage-data/add-data
   };
 
   return (
